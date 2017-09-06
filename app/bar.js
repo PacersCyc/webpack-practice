@@ -13,3 +13,9 @@ export default function(){
 	return content
 }
 */
+
+
+
+/*
+shortcut for --optimize-minimize --define
+               process.env.NODE_ENV="production"             
