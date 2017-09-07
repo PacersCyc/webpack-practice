@@ -5,7 +5,7 @@ import './reset.css'
 import './App.css';
 import TodoInput from './TodoInput'
 import TodoItem from './TodoItem'
-import * as localStore from './localStore'
+//import * as localStore from './localStore'
 
 
 
@@ -49,7 +49,7 @@ class App extends Component {
 
   /*组件更新之后存储数据*/
   componentDidUpdate(){
-    localStore.save('todoList', this.state.todoList)
+    //localStore.save('todoList', this.state.todoList)
   }
 
   toggle(e,todo){
