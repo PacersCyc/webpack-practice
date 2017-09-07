@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
+import Welcome from './welcome'
 
-
+/*
 function tick() {
   const element = (
     <div>
@@ -20,3 +21,11 @@ function tick() {
 }
 
 setInterval(tick, 1000);
+*/
+
+
+
+ReactDOM.render(
+  <Welcome name = "Component"/>,
+  document.getElementById('root')
+)

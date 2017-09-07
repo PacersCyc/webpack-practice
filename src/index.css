@@ -4,12 +4,12 @@ body {
   font-family: sans-serif;
   background: #f2f2f2;
 }
-#root2{
+#root{
 	margin: 40px auto;
 	background:#ccc;
 	text-align:center;
 }
-#root2 h1{
+#root h1{
 	font-size:80px;
 	font-weight: bold;
 	color:#f0f;
