@@ -10,6 +10,12 @@
   min-width:32em;
   box-shadow:0 0 1em hsla(0,0%,0%,0.15); 
 }
+.App .todo-list>li:nth-child(odd){
+  background:#eee;
+}
+.App .todo-list>li:htn-child(even){
+  background:#f8f8f8;
+}
 
 /*
 .App-logo {

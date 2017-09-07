@@ -10,20 +10,21 @@ class App extends Component {
   constructor(props){
       super(props)
       this.state = {
-          newTodo: 'test',
-          todoList: [
-              {id:1, title:'第一个待办'},
-              {id:2, title:'第二个待办'}
-          ]
+          newTodo: '',
+          todoList: []
       }
   }
 
   render() {
-    let todos = this.state.todoList.map((item,index)=>{
+    let todos = this.state.todoList
+    .filter((item)=>!item.deleted)  //过滤未点击删除按钮的元素
+    .map((item,index)=>{
       //动手题3：为什么return后加括号
       return (
-        <li>
-          <TodoItem todo={item} />
+        <li key={index}>
+          <TodoItem todo={item} 
+            onToggle={this.toggle.bind(this)}
+            onDelete={this.delete.bind(this)} />
         </li>
       )
     })
@@ -32,14 +33,60 @@ class App extends Component {
       <div className="App">
         <h1>我的待办</h1>
         <div className = "imput-w">
-          <TodoInput content={this.state.newTodo} />
+          <TodoInput content={this.state.newTodo} 
+            onSubmit={this.addTodo.bind(this)} 
+            onChange={this.changeTitle.bind(this)} />
         </div>
-        <ol>
+        <ol className="todo-list">
           {todos}
         </ol>
       </div>
     )
   }
+
+  toggle(e,todo){
+    todo.status = todo.status === 'completed' ? '' : 'completed'
+    console.log(this.state)
+    this.setState(this.state) 
+  }
+
+  delete(e,todo){
+    todo.deleted = true
+    this.setState(this.state)
+  }
+
+  addTodo(event){
+    console.log('添加Todo')
+
+    this.state.todoList.push({
+      id:idMaker(),
+      title:event.target.value,
+      status:null,
+      deleted:false
+    })
+
+    this.setState({
+      newTodo:'',
+      todoList:this.state.todoList
+    })
+  }
+
+  changeTitle(event){
+    this.setState({
+      newTodo:event.target.value,
+      todoList:this.state.todoList
+    })
+  }
 }
 
+
+
 export default App;
+
+
+let id = 0
+
+function idMaker(){
+  id++
+  return id
+}
