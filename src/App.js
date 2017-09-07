@@ -14,6 +14,7 @@ class App extends Component {
   constructor(props){
       super(props)
       this.state = {
+          user:{},
           newTodo: '',
           todoList: []
       }
@@ -35,7 +36,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <h1>我的待办</h1>
+        <h1>{this.state.user.username||'我'}的待办</h1>
         <div className = "imput-w">
           <TodoInput content={this.state.newTodo} 
             onSubmit={this.addTodo.bind(this)} 
@@ -44,7 +45,7 @@ class App extends Component {
         <ol className="todo-list">
           {todos}
         </ol>
-        <UserDialog />
+        <UserDialog onSignUp={this.onSignUp.bind(this)}/>
       </div>
     )
   }
@@ -52,6 +53,11 @@ class App extends Component {
   /*组件更新之后存储数据*/
   componentDidUpdate(){
     //localStore.save('todoList', this.state.todoList)
+  }
+
+  onSignUp(user){
+    this.state.user = user
+    this.setState(this.state)
   }
 
   toggle(e,todo){
