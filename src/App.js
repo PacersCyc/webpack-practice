@@ -5,19 +5,20 @@ import './reset.css'
 import './App.css';
 import TodoInput from './TodoInput'
 import TodoItem from './TodoItem'
+import * as localStore from './localStore'
 
 class App extends Component {
   constructor(props){
       super(props)
       this.state = {
           newTodo: '',
-          todoList: []
+          todoList: localStore.load('todoList') || []
       }
   }
 
   render() {
     let todos = this.state.todoList
-    .filter((item)=>!item.deleted)  //过滤未点击删除按钮的元素
+    .filter((item)=>!item.deleted)  //过滤未点击删除按钮的元素,deleted为false即被过滤
     .map((item,index)=>{
       //动手题3：为什么return后加括号
       return (
@@ -44,10 +45,15 @@ class App extends Component {
     )
   }
 
+  /*组件更新之后存储数据*/
+  componentDidUpdate(){
+    localStore.save('todoList', this.state.todoList)
+  }
+
   toggle(e,todo){
     todo.status = todo.status === 'completed' ? '' : 'completed'
     console.log(this.state)
-    this.setState(this.state) 
+    this.setState(this.state)
   }
 
   delete(e,todo){
