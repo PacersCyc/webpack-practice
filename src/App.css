@@ -1,7 +1,17 @@
 .App {
-  text-align: center;
+  /*text-align: center;*/
+  colo:#333;
+  border:1px solid #aaa;
+  border-radius: 4px;
+  background:#fff;
+  margin:2em;
+  padding: 0 1em;
+  min-height:20em;
+  min-width:32em;
+  box-shadow:0 0 1em hsla(0,0%,0%,0.15); 
 }
 
+/*
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
@@ -22,3 +32,4 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+*/

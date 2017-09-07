@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-//import App from './App';
+import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import Welcome from './welcome'
+//import Welcome from './welcome'
 
 /*
 function tick() {
@@ -26,6 +26,6 @@ setInterval(tick, 1000);
 
 
 ReactDOM.render(
-  <Welcome name = "Component"/>,
+  <App name = "Component"/>,
   document.getElementById('root')
 )
