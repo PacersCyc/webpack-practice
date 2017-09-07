@@ -5,6 +5,7 @@ import './reset.css'
 import './App.css';
 import TodoInput from './TodoInput'
 import TodoItem from './TodoItem'
+import UserDialog from './UserDialog'
 //import * as localStore from './localStore'
 
 
@@ -43,6 +44,7 @@ class App extends Component {
         <ol className="todo-list">
           {todos}
         </ol>
+        <UserDialog />
       </div>
     )
   }
