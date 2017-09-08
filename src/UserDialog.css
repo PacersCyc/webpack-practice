@@ -15,7 +15,7 @@
 	border-radius: 4px;
 	min-width: 20em;
 	background: #fff;
-	box-shadow: 0 0 1em hsla(0,0,0%,.35)
+	box-shadow: 0 0 1em hsla(0,0,0%,0.35)
 }
 .UserDialog>nav:first-child{
 	padding:1em;

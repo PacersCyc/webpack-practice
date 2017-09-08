@@ -15,6 +15,7 @@ class App extends Component {
   constructor(props){
       super(props)
       this.state = {
+          //调用leanCloud的getCurrentUser方法获取当前的用户信息(读取上次登录的user)，并保存到state.user中
           user:getCurrentUser() || {},
           newTodo: '',
           todoList: []
@@ -37,7 +38,8 @@ class App extends Component {
 
     return (
       <div className="App">
-        <h1>{this.state.user.username||'我'}的待办
+        <h1>{this.state.user.username||'我'}的待办 {/*根据用户名显示*/}
+        {/*登录成功则添加登出按钮*/}
           {this.state.user.id ? <button onClick={this.signOut.bind(this)}>登出</button> : null}
         </h1>
         <div className = "imput-w">
@@ -48,6 +50,7 @@ class App extends Component {
         <ol className="todo-list">
           {todos}
         </ol>
+        {/*如果注册或登录成功则关闭UserDialog*/}
         {this.state.user.id ? 
           null : 
           <UserDialog 
@@ -62,10 +65,11 @@ class App extends Component {
     //localStore.save('todoList', this.state.todoList)
   }
 
+  /*退出登录*/
   signOut(){
-    signOut()
+    signOut() /*调用leanCloud的signOut方法退出登录*/
     let stateCopy = JSON.parse(JSON.stringify(this.state))
-    stateCopy.user = {}
+    stateCopy.user = {} /*清空用户信息*/
     this.setState(stateCopy)
   }
 
