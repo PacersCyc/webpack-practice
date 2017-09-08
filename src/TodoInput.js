@@ -1,16 +1,35 @@
 //输入框组件
 
-import React, {Component} from 'react'
+import React from 'react'
 import './TodoInput.css'
 
-class TodoInput extends Component {
-	render(){
-		//this.submit等事件处理函数需要手动绑定this对象，否则call()方法会传入null
-		return <input className="TodoInput" type="text" value={this.props.content} 
-			onKeyPress={this.submit.bind(this)} 
-			onChange={this.changeTitle.bind(this)}/>  
+function submit(props, e){
+	if(e.key === 'Enter'){
+		console.log('用户按回车了！')
+		props.onSubmit(e)
 	}
+}
 
+function changeTitle(props, e){
+	props.onChange(e)
+}
+
+export default function (props){
+	return <input className="TodoInput" type="text" value={props.content} 
+		onKeyPress={submit.bind(this)} 
+		onChange={changeTitle.bind(this)}/> 
+}
+
+/*
+//import
+//class TodoInput extends Component {
+	//render(){
+		//this.submit等事件处理函数需要手动绑定this对象，否则call()方法会传入null
+		//return <input className="TodoInput" type="text" value={this.props.content} 
+			//onKeyPress={this.submit.bind(this)} 
+			//onChange={this.changeTitle.bind(this)}/>}  
+	
+/*
 	submit(e){
 		if(e.key === 'Enter'){
 			console.log('用户按回车了！')
@@ -25,4 +44,4 @@ class TodoInput extends Component {
 }
 
 
-export default TodoInput
+export default TodoInput*/
