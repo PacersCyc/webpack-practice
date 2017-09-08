@@ -1,7 +1,7 @@
 
 import React, {Component} from 'react'
 import './UserDialog.css'
-import {signUp} from './leanCloud'
+import {signUp,signIn} from './leanCloud'
 
 class UserDialog extends Component{
 	constructor(props){
@@ -29,17 +29,41 @@ class UserDialog extends Component{
 			this.props.onSignUp.call(null,user)
 		}
 		let error = (error)=>{
-			console.log(error)
+			//alert(error)
+			switch(error.code){
+				case 202:
+					alert('用户名已被占用')
+					break
+				default:
+					alert(error)
+					break
+			}
 		}
 		signUp(username, password, success, error)
 	}
 
 	signIn(e){
-
+		e.preventDefault()
+		let {username, password} = this.state.formData
+		let success = (user)=>{
+			this.props.onSignIn.call(null, user)
+		}
+		let error = (error)=>{
+		 	//alert(error)
+		 	switch(error.code){
+		 		case 210:
+		 			alert('用户名与密码不匹配')
+		 			break
+		 		default:
+		 			alert(error)
+		 			break
+		 	}
+		}
+		 signIn(username, password, success, error)
 	}
 
 	changeFormData(key,e){
-		let stateCopy = JSON.parse(JSON.stringify(this.state))
+		let stateCopy = JSON.parse(JSON.stringify(this.state))  //JSON深拷贝
 		stateCopy.formData[key] = e.target.value
 		this.setState(stateCopy)
 	}
@@ -85,8 +109,18 @@ class UserDialog extends Component{
 			<div className="UserDialog-w">
 				<div className="UserDialog">
 					<nav onChange={this.switch.bind(this)}>
-						<label><input type="radio" value="signUp" checked={this.state.selected === 'signUp'}/>注册</label>
-						<label><input type="radio" value="signIn" checked={this.state.selected === 'signIn'}/>登录</label>
+						<label>
+							<input type="radio" value="signUp" 
+							  checked={this.state.selected === 'signUp'}
+							  onChange={this.switch.bind(this)}/>
+							注册
+						</label>
+						<label>
+							<input type="radio" value="signIn" 
+							  checked={this.state.selected === 'signIn'} 
+							  onChange={this.switch.bind(this)}/>
+							登录
+						</label>
 					</nav>
 					<div className="panels">
 						{this.state.selected === 'signUp' ? signUpForm : null}
