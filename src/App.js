@@ -6,6 +6,7 @@ import './App.css';
 import TodoInput from './TodoInput'
 import TodoItem from './TodoItem'
 import UserDialog from './UserDialog'
+import JSONDeepCopy from './JSONDeepCopy'
 import {getCurrentUser,signOut} from './leanCloud'
 //import * as localStore from './localStore'
 
@@ -68,13 +69,13 @@ class App extends Component {
   /*退出登录*/
   signOut(){
     signOut() /*调用leanCloud的signOut方法退出登录*/
-    let stateCopy = JSON.parse(JSON.stringify(this.state))
+    let stateCopy = JSONDeepCopy(this.state)
     stateCopy.user = {} /*清空用户信息*/
     this.setState(stateCopy)
   }
 
   onSignUpOrSignIn(user){
-    let stateCopy = JSON.parse(JSON.stringify(this.state))
+    let stateCopy = JSONDeepCopy(this.state)
     stateCopy.user = user
     this.setState(stateCopy)
   }
