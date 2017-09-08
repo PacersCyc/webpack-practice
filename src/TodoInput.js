@@ -6,7 +6,9 @@ import './TodoInput.css'
 function submit(props, e){
 	if(e.key === 'Enter'){
 		console.log('用户按回车了！')
-		props.onSubmit(e)
+		if(e.target.value.trim() !== ''){
+			props.onSubmit(e)
+		}
 	}
 }
 
