@@ -6,6 +6,7 @@ import JSONDeepCopy from './JSONDeepCopy'
 import {signUp, signIn, sendPasswordResetEmail} from './leanCloud'
 import ForgotPasswordForm from './ForgotPasswordForm'
 import SignInOrSignUp from './SignInOrSignUp'
+import {CheckData} from './CheckData'
 
 class UserDialog extends Component{
 	constructor(props){
@@ -26,6 +27,10 @@ class UserDialog extends Component{
 		e.preventDefault()
 		//将用户提交的表单数据(用户名、密码)保存到新对象中
 		let {username, password, email} = this.state.formData
+		//判断输入是否合法
+		if(!(CheckData.isValidEmail(email) && CheckData.isValidUsername(username) && CheckData.isValidPassword(password))){
+			return
+		}
 		//验证成功函数
 		let success = (user)=>{
 			console.log(user)
@@ -56,6 +61,10 @@ class UserDialog extends Component{
 	signIn(e){
 		e.preventDefault()
 		let {username, password} = this.state.formData
+		//判断输入是否合法
+		if(!(CheckData.isValidUsername(username) && CheckData.isValidPassword(password))){
+			return
+		}
 		let success = (user)=>{
 			this.props.onSignIn.call(null, user)
 		}

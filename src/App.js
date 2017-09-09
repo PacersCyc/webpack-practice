@@ -12,23 +12,6 @@ import {getCurrentUser, signOut, TodoModel} from './leanCloud'
 //import * as localStore from './localStore'
 
 
-/*
-// 声明类型
-var TodoFolder = AV.Object.extend('TodoFolder')
-// 新建对象
-var todoFolder = new TodoFolder()
-// 设置名称
-todoFolder.set('name','工作')
-// 设置优先级
-todoFolder.set('priority',1)
-todoFolder.save().then(function (todo) {
-  console.log('objectId is ' + todo.id)
-},function (error) {
-  console.error(error)
-})
-*/
-
-
 class App extends Component {
   constructor(props){
       super(props)
@@ -53,7 +36,6 @@ class App extends Component {
     let todos = this.state.todoList
     .filter((item)=>!item.deleted)  //过滤未点击删除按钮的元素,deleted为false即被过滤
     .map((item,index)=>{
-      //动手题3：为什么return后加括号
       return (
         <li key={index}>
           <TodoItem todo={item} 
@@ -65,11 +47,14 @@ class App extends Component {
 
     return (
       <div className="App">
-        <h1>{this.state.user.username||'我'}的待办 {/*根据用户名显示*/}
-        {/*登录成功则添加登出按钮*/}
-          {this.state.user.id ? <button onClick={this.signOut.bind(this)}>登出</button> : null}
-        </h1>
-        <div className = "imput-w">
+        <nav>
+          <h1>{this.state.user.username||'我'}的待办 {/*根据用户名显示*/}
+            {/*{this.state.user.id ? <button onClick={this.signOut.bind(this)}>登出</button> : null}*/}
+          </h1>
+          {/*登录成功则添加登出按钮*/}
+          {this.state.user.id ? <a className="iconfont icon-tuichu" onClick={this.signOut.bind(this)}>退出</a> : null}
+        </nav>
+        <div className = "input-w">
           <TodoInput content={this.state.newTodo} 
             onSubmit={this.addTodo.bind(this)} 
             onChange={this.changeTitle.bind(this)} />

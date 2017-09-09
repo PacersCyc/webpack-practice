@@ -120,7 +120,7 @@ export function signIn(username, password, successFn, errorFn){
 }	
 
 export function signOut(){
-	AV.user.logOut()
+	AV.User.logOut()
 	return undefined
 }
 

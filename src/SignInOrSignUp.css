@@ -1,0 +1,32 @@
+.signInOrSignUp{
+	background:#7B7DEE;
+}
+.signInOrSignUp>nav{
+	display:flex;
+	align-items:center;
+	justify-content:space-around;
+}
+.signInOrSignUp>nav input[type=radio]{
+	display:none;
+}
+.signInOrSignUp .panels form .actions>button{
+	font-weight: bold;
+	padding:.5em;
+	border-radius:8px;
+	outline:none;
+	overflow: hidden;
+	background: #1bfa29;
+	color:#fff;
+	cursor: pointer;
+}
+
+/*
+.signInOrSignUp .panels form .row>div{
+	position: relative;
+}
+.signInOrSignUp .panels form .row>div a.iconfont{
+	position: absolute;
+	color:#333;
+	left:2px;
+}
+*/

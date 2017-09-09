@@ -1,6 +1,7 @@
 //表单切换组件
 
 import React, {Component} from 'react'
+import './SignInOrSignUp.css'
 import SignUpForm from './SignUpForm'
 import SignInForm from './SignInForm'
 
@@ -23,15 +24,17 @@ class SignInOrSignUp extends Component{
 		return (
 			<div className="signInOrSignUp">
 				<nav>
-					<label>
+					<label for="signUp">
 					{/*这里用onChange事件绑定到switch函数来消除浏览器的关于value的warning*/}
 						<input type="radio" value="signUp" 
+						  id="signUp"
 						  checked={this.state.selected === 'signUp'} 
 						  onChange={this.switch.bind(this)}/>
 						注册
 					</label>
-					<label>
-						<input type="radio" value="signIn" 
+					<label for="signIn">
+						<input type="radio" value="signIn"
+						  id="signIn" 
 						  checked={this.state.selected === 'signIn'} 
 						  onChange={this.switch.bind(this)}/>
 						登录
